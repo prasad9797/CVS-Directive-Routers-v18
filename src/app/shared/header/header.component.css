@@ -1,0 +1,21 @@
+nav {
+  display: flex;
+  background-color: #eb0000;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  width: 100%;
+  padding: 0px 50px;
+}
+
+.active-link {
+  background-color: #ff6666;
+}
+
+button {
+  color: white;
+  border: none;
+  height: 40px;
+  background-color: #eb0000;
+  padding: 0px 10px;
+}

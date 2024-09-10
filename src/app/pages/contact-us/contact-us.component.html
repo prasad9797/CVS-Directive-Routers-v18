@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="container-main">
+  <h2>Contact Us</h2>
+
+  @if(!isFormSubmitted){
+  <div class="container">
+    <form [formGroup]="contactUsForm" (ngSubmit)="submitForm()">
+      <div class="row">
+        <label>Name:</label>
+        <input formControlName="name" />
+        @if(contactUsForm.get('name')?.invalid &&
+        (contactUsForm.get('name')?.dirty ||
+        contactUsForm.get('name')?.touched)){
+        @if(contactUsForm.get('name')?.errors?.['required']){
+        <span class="error">Name is required</span>
+        } }
+      </div>
+
+      <div class="row">
+        <label>Message:</label>
+        <input formControlName="message" />
+        @if(contactUsForm.get('message')?.invalid &&
+        (contactUsForm.get('message')?.dirty ||
+        contactUsForm.get('message')?.touched)){
+        @if(contactUsForm.get('message')?.errors?.['required']){
+        <span class="error">Message is required</span>
+        } @if(contactUsForm.get('message')?.errors?.['minlength']){
+        <span class="error">Message needs to be 10 charaters long</span>
+        } }
+      </div>
+
+      <button type="submit" [disabled]="contactUsForm.invalid">
+        Send Message
+      </button>
+    </form>
+  </div>
+  } @else{
+  <div class="laterContainer">
+    <p class="thankUMessages">
+      Thank you for contacting us. We will be in touch shortly!
+    </p>
+    <hr />
+
+    <h3>You have submitted forllowing message</h3>
+
+    <div class="row"><strong>Name:</strong> {{ contactUsFormValues.name }}</div>
+    <div class="row">
+      <strong>Message:</strong>
+      {{ contactUsFormValues.message }}
+    </div>
+  </div>
+  }
+</div>
